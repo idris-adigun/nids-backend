@@ -4,9 +4,6 @@ def packet_callback(packet):
     logger.logInfo(f'Packet: {packet.summary()}')
     # logger.logInfo(f'Packet: {packet.show()}')
     
-    # Print detailed packet information
-    # print(packet.show())
-    
     # Check for suspicious patterns
     if packet.haslayer('IP'):
         ip_layer = packet.getlayer('IP')
