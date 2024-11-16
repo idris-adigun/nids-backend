@@ -8,4 +8,4 @@ def analyze_packet(packet):
     if TCP in packet:
         print(f"TCP Payload: {packet[TCP].payload}")
 
-sniff(iface="Ethernet", prn=analyze_packet, count=10)
+sniff(iface="eth0", prn=analyze_packet)
