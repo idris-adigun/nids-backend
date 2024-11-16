@@ -16,15 +16,16 @@ def packet_callback(packet):
     
     if packet.haslayer('TCP'):
         tcp_layer = packet.getlayer('TCP')
-        suspicious_dst_ports = env.sus_port
+        suspicious_dst_ports = env.sus_dst_port
         if tcp_layer.dport in suspicious_dst_ports:  # Example suspicious port (Telnet)
             logger.logWarning(f"Suspicious TCP destination port detected: {tcp_layer.dport}")   
-        if tcp_layer.flags == 'S':  # Example suspicious SYN flag
+        suspicious_flags = env.sus_flag
+        if tcp_layer.flags in suspicious_flags:
             logger.logWarning(f"Suspicious TCP SYN flag detected: {tcp_layer.flags}")
     
     if packet.haslayer('UDP'):
         udp_layer = packet.getlayer('UDP')
-        suspicious_src_ports = env.sus_port
+        suspicious_src_ports = env.sus_src_port
         if udp_layer.dport in suspicious_src_ports:  # Example suspicious port (DNS)
             logger.logWarning(f"Suspicious UDP destination port detected: {udp_layer.dport}")
     
@@ -34,8 +35,12 @@ def packet_callback(packet):
         for pattern in suspicious_payload:
             if pattern.encode() in raw_layer.load:
                 logger.logWarning(f"Suspicious payload content detected")
+                
+                
+def main():
+    interfaces = env.interfaces
+    for iface in interfaces:
+        sniff(iface=iface, prn=packet_callback)
 
-interfaces = env.interfaces
-
-for iface in interfaces:
-    sniff(iface=iface, prn=packet_callback)
+if __name__ == '__main__':
+    main()

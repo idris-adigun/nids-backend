@@ -1,5 +1,6 @@
 import logging
 import sys
+import config.env as env
 
 
 
@@ -15,7 +16,13 @@ stdout_log_handler.setLevel(logging.INFO)
 stdout_log_handler.setFormatter(stdout_log_formatter)
 
 logger.addHandler(stdout_log_handler)
-logger.setLevel(logging.INFO)
+log_level = env.log_level
+if log_level == 'DEBUG':
+    logger.setLevel(logging.DEBUG)
+elif log_level == 'INFO':   
+    logger.setLevel(logging.INFO)
+elif log_level:
+    logger.setLevel(logging.WARNING)
 
 def logInfo(message):
     logger.info(f'{message}')
