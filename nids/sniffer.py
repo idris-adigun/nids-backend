@@ -8,3 +8,7 @@ def packet_callback(packet):
 def sniff_interface(interface):
         logger.logInfo(f"Sniffing on interface {interface}")
         sniff(iface=interface, prn=lambda x: packet_callback(x))
+        
+def stop_sniffing():
+    logger.logInfo("Stopping the sniffer")
+    raise KeyboardInterrupt

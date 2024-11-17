@@ -2,8 +2,6 @@ import logging
 import sys
 import config.env as env
 
-
-
 # Logging config
 logger = logging.getLogger(__name__)
 
