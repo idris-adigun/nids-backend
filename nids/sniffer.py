@@ -1,11 +1,9 @@
 from scapy.all import sniff
 import logger as logger
 import config.env as env
-def packet_callback(packet):
+def packet_callback(packet, rule_set):
+    # print(rule_set)
     logger.logInfo(f'Packet: {packet.summary()}')
-    # logger.logInfo(f'Packet: {packet.show()}')
-    
-    # Check for suspicious patterns
     if packet.haslayer('IP'):
         ip_layer = packet.getlayer('IP')
         suspicious_ips = env.sus_ip
@@ -37,10 +35,6 @@ def packet_callback(packet):
                 logger.logWarning(f"Suspicious payload content detected")
                 
                 
-def main():
-    interfaces = env.interfaces
-    for iface in interfaces:
-        sniff(iface=iface, prn=packet_callback)
-
-if __name__ == '__main__':
-    main()
+def sniff_interface(interface, rule_set):
+        logger.logInfo(f"Sniffing on interface {interface}")
+        sniff(iface=interface, prn=lambda x: packet_callback(x, rule_set))
