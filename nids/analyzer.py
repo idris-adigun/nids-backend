@@ -11,13 +11,13 @@ def analyze(packet):
         suspicious_ips = rule_set['sus_ip']
         if ip_layer.src in suspicious_ips:
             logger.logWarning(f"Suspicious source IP detected: {ip_layer.src}")
-        if ip_layer.dst == '192.168.1.255':  # Example suspicious broadcast
+        if ip_layer.dst == '192.168.1.255':
             logger.logWarning(f"Suspicious destination IP detected: {ip_layer.dst}")    
     
     if packet.haslayer('TCP'):
         tcp_layer = packet.getlayer('TCP')
         suspicious_dst_ports = rule_set['sus_dst_port']
-        if tcp_layer.dport in suspicious_dst_ports:  # Example suspicious port (Telnet)
+        if tcp_layer.dport in suspicious_dst_ports:
             logger.logWarning(f"Suspicious TCP destination port detected: {tcp_layer.dport}")   
         suspicious_flags = rule_set['sus_flag']
         if tcp_layer.flags in suspicious_flags:
@@ -26,7 +26,7 @@ def analyze(packet):
     if packet.haslayer('UDP'):
         udp_layer = packet.getlayer('UDP')
         suspicious_src_ports = rule_set['sus_src_port']
-        if udp_layer.dport in suspicious_src_ports:  # Example suspicious port (DNS)
+        if udp_layer.dport in suspicious_src_ports: 
             logger.logWarning(f"Suspicious UDP destination port detected: {udp_layer.dport}")
     
     if packet.haslayer('Raw'):
