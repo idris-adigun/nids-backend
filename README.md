@@ -40,15 +40,19 @@ To install the NIDS Backend, follow these steps:
 
 ## Usage
 
-To start the NIDS Backend service, run the following command:
+To test the NIDS
 
-```bash
-npm start
+```
+cd nids
 ```
 
-The service will be available at `http://localhost:3000`.
+Run Python Script
 
-## Configuration
+```
+python3 controller.py
+```
+
+## Configuration [WIP]
 
 The NIDS Backend can be configured using environment variables. Create a `.env` file in the root directory and add the following variables:
 
