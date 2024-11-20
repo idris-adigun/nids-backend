@@ -27,7 +27,7 @@ To install the NIDS Backend, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/nids-backend.git
+   git clone https://github.com/idris-adigun/nids-backend.git
    ```
 2. Navigate to the project directory:
    ```bash
