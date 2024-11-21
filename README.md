@@ -33,9 +33,6 @@ To install the NIDS Backend, follow these steps:
    ```bash
    cd nids-backend
    ```
-3. Install dependencies:
-   ```bash
-   npm install
    ```
 
 ## Usage
