@@ -1,5 +1,6 @@
 import os
 
+
 log_level = os.getenv('LOG_LEVEL', 'WARNING')
 ports_env = os.getenv('PORTS', '5432')
 sus_ip = os.getenv('SUS_IP', '192.168.1.1,10.0.0.1,172.16.0.1')
