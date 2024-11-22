@@ -13,6 +13,9 @@
 
 The NIDS Backend is a robust and scalable backend service designed to support the Network Intrusion Detection System (NIDS). It provides APIs and data processing capabilities to detect and respond to network threats in real-time.
 
+## Architecture (WIP)
+![Blank diagram](https://github.com/user-attachments/assets/ec692c18-8ca8-494c-986d-1f94f335588b)
+
 ## Features
 
 - Real-time network traffic analysis
